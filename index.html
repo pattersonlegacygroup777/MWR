@@ -108,6 +108,7 @@
       display: inline-block;
     }
     .cta-button:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4); }
+    .cta-button:disabled { opacity: 0.6; cursor: not-allowed; }
     .rocket { margin-left: 5px; }
 
     .status {
@@ -228,15 +229,27 @@
     </div>
   </div>
 
-  <!-- Lead capture script (updated to match your screenshot) -->
+  <!-- Lead capture script (FIXED VERSION) -->
   <script>
     const SHEETS_ENDPOINT = "https://script.google.com/macros/s/AKfycbzmJNwXX21hhikOZkdiALocHCAwL7BMMPYbnlpCreCj-vaZ3auqtbE43yCL4oM6FHte/exec";
 
     (function () {
       const form = document.getElementById('ambassadorForm');
+      const statusDiv = document.getElementById('status');
+      
       if (!form) return;
 
-      form.addEventListener('submit', function () {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault(); // Prevents page reload - THIS IS THE KEY FIX
+        
+        // Disable submit button to prevent double submissions
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = 'Sending...';
+        statusDiv.textContent = 'Submitting...';
+        statusDiv.style.color = '#667eea';
+
         try {
           const payload = {
             firstName: document.getElementById('firstName')?.value || "",
@@ -249,13 +262,35 @@
 
           fetch(SHEETS_ENDPOINT, {
             method: 'POST',
+            mode: 'no-cors', // Required for Google Apps Script
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
           })
-          .then(r => console.log('Response:', r))
-          .catch(err => console.error('Error:', err));
+          .then(() => {
+            console.log('Data sent successfully');
+            statusDiv.textContent = '✓ Thank you! We\'ll be in touch soon.';
+            statusDiv.style.color = '#4CAF50';
+            form.reset(); // Clear the form
+            
+            // Re-enable button after 2 seconds
+            setTimeout(() => {
+              submitBtn.disabled = false;
+              submitBtn.innerHTML = originalText;
+            }, 2000);
+          })
+          .catch(err => {
+            console.error('Error:', err);
+            statusDiv.textContent = 'Something went wrong. Please try again.';
+            statusDiv.style.color = '#f44336';
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+          });
         } catch (e) {
           console.error('Form error:', e);
+          statusDiv.textContent = 'Error submitting form.';
+          statusDiv.style.color = '#f44336';
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalText;
         }
       });
     })();
