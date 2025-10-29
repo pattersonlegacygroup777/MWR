@@ -68,18 +68,46 @@
         }
         .step-text { font-size: 14px; color: #333; font-weight: 600; }
         .footer-text { text-align: center; margin-top: 30px; color: #999; font-size: 14px; }
-        .iframe-container {
-            margin-top: 40px;
-            width: 100%;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+
+        /* new section for learn more */
+        .learn-more-section {
+            background: linear-gradient(135deg, #4a9fd8 0%, #2c5f8d 100%);
+            color: #fff;
+            text-align: center;
+            padding: 50px 20px;
+            border-radius: 16px;
+            margin-top: 50px;
+            box-shadow: 0 10px 40px rgba(74,159,216,0.4);
         }
-        iframe {
-            width: 100%;
-            height: 600px;
-            border: none;
+
+        .learn-more-section h2 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 15px;
         }
+
+        .learn-more-section p {
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        .learn-more-btn {
+            background: #fff;
+            color: #2c5f8d;
+            font-weight: bold;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .learn-more-btn:hover {
+            background: #2c5f8d;
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
         @media (max-width: 768px) {
             .logo { font-size: 36px; letter-spacing: 4px; }
             .tagline { font-size: 24px; }
@@ -87,7 +115,6 @@
             .business-opportunity { font-size: 16px; }
             .card { padding: 30px 20px; }
             .model-steps { flex-direction: column; }
-            iframe { height: 500px; }
         }
     </style>
 </head>
@@ -150,12 +177,13 @@
             <p class="footer-text">
                 Travel more, spend less, and create passive income for your family.
             </p>
+        </div>
 
-            <!-- Embedded link preview -->
-            <div class="iframe-container">
-                <iframe src="http://www.MWRlife.com/LorelleNicole" title="MWR Life - Lorelle Nicole"></iframe>
-            </div>
-
+        <!-- Learn More Section -->
+        <div class="learn-more-section">
+            <h2>Go to the Official MWR Life Website</h2>
+            <p>Learn more about becoming a Lifestyle Ambassador and start your journey today!</p>
+            <a href="http://www.MWRlife.com/LorelleNicole" class="learn-more-btn" target="_blank">Go to Website</a>
         </div>
     </div>
 
