@@ -355,5 +355,42 @@
         return s.replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
       }
     </script>
+
+    <!-- === Google Sheets logging (added, non-breaking) === -->
+    <script>
+      // Paste the Apps Script "Web app URL" you just copied:
+      const SHEETS_ENDPOINT = "https://script.google.com/macros/s/PASTE-YOUR-URL/exec";
+
+      (function () {
+        const form = document.getElementById('ambassadorForm');
+        if (!form) return;
+
+        form.addEventListener('submit', function () {
+          try {
+            const payload = {
+              firstName: document.getElementById('firstName')?.value || "",
+              email:     document.getElementById('email')?.value || "",
+              phone:     document.getElementById('phone')?.value || "",
+              ts:        new Date().toISOString(),
+              page:      location.href,
+              ua:        navigator.userAgent
+            };
+
+            // Fire-and-forget so it still runs during redirect
+            const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
+            const sent = navigator.sendBeacon && navigator.sendBeacon(SHEETS_ENDPOINT, blob);
+
+            if (!sent) {
+              fetch(SHEETS_ENDPOINT, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+                keepalive: true
+              }).catch(() => {});
+            }
+          } catch (_) {}
+        }, false);
+      })();
+    </script>
 </body>
 </html>
