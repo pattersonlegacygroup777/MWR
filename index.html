@@ -228,71 +228,37 @@
     </div>
   </div>
 
-  <!-- Lead capture script -->
+  <!-- Lead capture script (updated to match your screenshot) -->
   <script>
-    /**
-     * References (not loaded by the page; for your records only):
-     * Deployment ID: AKfycbzmJNwXX21hhikOZkdiALocHCAwL7BMMPYbnlpCreCj-vaZ3auqtbE43yCL4oM6FHte
-     * Web App /exec URL (used below): https://script.google.com/macros/s/AKfycbzmJNwXX21hhikOZkdiALocHCAwL7BMMPYbnlpCreCj-vaZ3auqtbE43yCL4oM6FHte/exec
-     * Library (Apps Script-side, not used in HTML): https://script.google.com/macros/library/d/1TEZ6jwxHsHDv4h0CGYy92ytpFVwcpzLC5JF6kS2Mnfa_y5GoTI1ysUoE/2
-     */
-
-    // Only this URL is required for the page to capture leads:
     const SHEETS_ENDPOINT = "https://script.google.com/macros/s/AKfycbzmJNwXX21hhikOZkdiALocHCAwL7BMMPYbnlpCreCj-vaZ3auqtbE43yCL4oM6FHte/exec";
 
-    const form = document.getElementById('ambassadorForm');
-    const statusEl = document.getElementById('status');
+    (function () {
+      const form = document.getElementById('ambassadorForm');
+      if (!form) return;
 
-    function setStatus(msg) {
-      if (statusEl) statusEl.textContent = msg || '';
-    }
+      form.addEventListener('submit', function () {
+        try {
+          const payload = {
+            firstName: document.getElementById('firstName')?.value || "",
+            email: document.getElementById('email')?.value || "",
+            phone: document.getElementById('phone')?.value || "",
+            ts: new Date().toISOString(),
+            page: location.href,
+            ua: navigator.userAgent
+          };
 
-    form.addEventListener('submit', async function (e) {
-      e.preventDefault();
-      setStatus('Saving your info…');
-
-      const firstName = document.getElementById('firstName')?.value?.trim() || '';
-      const email     = document.getElementById('email')?.value?.trim() || '';
-      const phone     = document.getElementById('phone')?.value?.trim() || '';
-
-      if (!firstName || !email || !phone) {
-        setStatus('Please fill in all fields.');
-        return;
-      }
-
-      const payload = {
-        firstName,
-        email,
-        phone,
-        ts:  new Date().toISOString(),
-        page: location.href,
-        ua:   navigator.userAgent
-      };
-
-      try {
-        // Try sendBeacon first for reliability during page nav
-        const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
-        const sent = navigator.sendBeacon && navigator.sendBeacon(SHEETS_ENDPOINT, blob);
-
-        if (!sent) {
-          // Fallback to fetch
-          const res = await fetch(SHEETS_ENDPOINT, {
+          fetch(SHEETS_ENDPOINT, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
-            keepalive: true
-          });
-          // It's okay if response body is empty; we just check status
-          if (!res.ok) throw new Error('Network response not ok');
+            body: JSON.stringify(payload)
+          })
+          .then(r => console.log('Response:', r))
+          .catch(err => console.error('Error:', err));
+        } catch (e) {
+          console.error('Form error:', e);
         }
-
-        setStatus('Success! We’ll reach out shortly.');
-        form.reset();
-      } catch (err) {
-        console.error('Lead capture error:', err);
-        setStatus('Hmm, something went wrong. Please try again.');
-      }
-    });
+      });
+    })();
   </script>
 </body>
 </html>
