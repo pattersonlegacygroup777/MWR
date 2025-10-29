@@ -76,11 +76,15 @@
     }
     .step-text { font-size: 14px; color: #333; font-weight: 600; }
 
-    .benefits { margin-bottom: 30px; }
+    /* Benefits List */
+    .benefits {
+      margin-top: 20px;
+      margin-bottom: 30px;
+    }
     .benefit-item {
       display: flex;
       align-items: flex-start;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
       font-size: 15px;
       color: #333;
       line-height: 1.5;
@@ -88,7 +92,7 @@
     .check-icon {
       color: #4CAF50;
       margin-right: 10px;
-      font-size: 20px;
+      font-size: 18px;
       flex-shrink: 0;
     }
 
@@ -116,45 +120,28 @@
       color: #d4d4d4; min-height: 18px;
     }
 
-    .footer-text {
+    /* Founder Quote Section */
+    .founder-quote {
       text-align: center;
+      font-style: italic;
+      color: #555;
+      font-size: 17px;
       margin-top: 30px;
-      color: #999;
-      font-size: 14px;
+      margin-bottom: 10px;
     }
-
-    .learn-more-section {
-      background: linear-gradient(135deg, #4a9fd8 0%, #2c5f8d 100%);
-      color: #fff;
+    .founder-name {
       text-align: center;
-      padding: 50px 20px;
-      border-radius: 16px;
-      margin-top: 50px;
-      box-shadow: 0 10px 40px rgba(74,159,216,0.4);
-    }
-    .learn-more-section h2 {
-      font-size: 28px;
-      font-weight: 800;
-      margin-bottom: 15px;
-    }
-    .learn-more-section p {
-      font-size: 18px;
-      margin-bottom: 25px;
-    }
-    .learn-more-btn {
-      background: #fff;
       color: #2c5f8d;
       font-weight: bold;
-      padding: 15px 40px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-size: 18px;
-      transition: all 0.3s ease;
+      font-size: 15px;
+      margin-bottom: 25px;
     }
-    .learn-more-btn:hover {
-      background: #2c5f8d;
-      color: #fff;
-      transform: translateY(-3px);
+
+    .footer-text {
+      text-align: center;
+      margin-top: 10px;
+      color: #999;
+      font-size: 14px;
     }
 
     @media (max-width: 768px) {
@@ -198,6 +185,14 @@
         </div>
       </div>
 
+      <!-- Benefits List -->
+      <div class="benefits">
+        <div class="benefit-item"><span class="check-icon">✔</span> Global opportunity with lucrative compensation</div>
+        <div class="benefit-item"><span class="check-icon">✔</span> Daily bonuses, monthly residuals & car bonus</div>
+        <div class="benefit-item"><span class="check-icon">✔</span> Presidential & Diamond Club recognition</div>
+        <div class="benefit-item"><span class="check-icon">✔</span> Once-in-a-lifetime incentive trips</div>
+      </div>
+
       <!-- Lead Capture Form -->
       <form id="ambassadorForm" autocomplete="on" novalidate>
         <div class="form-group">
@@ -217,21 +212,20 @@
         <div id="status" class="status" aria-live="polite"></div>
       </form>
 
+      <!-- Founder Quote Section -->
+      <p class="founder-quote">“Success Shouldn't Be Complicated.”</p>
+      <p class="founder-name">— Founder & CEO</p>
+
       <p class="footer-text">
         Travel more, spend less, and create passive income for your family.
       </p>
     </div>
-
-    <div class="learn-more-section">
-      <h2>Go to the Official Website</h2>
-      <p>Learn more about becoming a Lifestyle Ambassador and start your journey today!</p>
-      <a href="https://www.MWRlife.com/LorelleNicole" class="learn-more-btn" target="_blank" rel="noopener">Go to Website</a>
-    </div>
   </div>
 
-  <!-- Lead capture script (FIXED VERSION) -->
+  <!-- Lead capture script with redirect -->
   <script>
     const SHEETS_ENDPOINT = "https://script.google.com/macros/s/AKfycbzmJNwXX21hhikOZkdiALocHCAwL7BMMPYbnlpCreCj-vaZ3auqtbE43yCL4oM6FHte/exec";
+    const SIGNUP_URL = "https://www.MWRlife.com/LorelleNicole"; // redirect link
 
     (function () {
       const form = document.getElementById('ambassadorForm');
@@ -240,9 +234,8 @@
       if (!form) return;
 
       form.addEventListener('submit', function (e) {
-        e.preventDefault(); // Prevents page reload - THIS IS THE KEY FIX
-        
-        // Disable submit button to prevent double submissions
+        e.preventDefault();
+
         const submitBtn = form.querySelector('button[type="submit"]');
         const originalText = submitBtn.innerHTML;
         submitBtn.disabled = true;
@@ -262,21 +255,20 @@
 
           fetch(SHEETS_ENDPOINT, {
             method: 'POST',
-            mode: 'no-cors', // Required for Google Apps Script
+            mode: 'no-cors',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
           })
           .then(() => {
             console.log('Data sent successfully');
-            statusDiv.textContent = '✓ Thank you! We\'ll be in touch soon.';
+            statusDiv.textContent = '✓ Thank you! Redirecting to signup page...';
             statusDiv.style.color = '#4CAF50';
-            form.reset(); // Clear the form
-            
-            // Re-enable button after 2 seconds
+            form.reset();
+
+            // Redirect to signup page after a short delay
             setTimeout(() => {
-              submitBtn.disabled = false;
-              submitBtn.innerHTML = originalText;
-            }, 2000);
+              window.location.assign(SIGNUP_URL);
+            }, 800);
           })
           .catch(err => {
             console.error('Error:', err);
