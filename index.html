@@ -18,8 +18,6 @@
         }
         .container { max-width: 600px; width: 100%; }
         .header { text-align: center; margin-bottom: 30px; }
-        .tagline { font-size: 32px; font-weight: 800; margin-bottom: 15px; line-height: 1.2; }
-        .subtitle { font-size: 18px; color: #d4d4d4; margin-bottom: 10px; }
 
         .business-opportunity {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -121,8 +119,6 @@
         .leads-table tr:nth-child(even) td{background:#202028}
         .leads-empty{color:#a5adba;font-size:14px;padding:8px 0}
         @media (max-width: 768px) {
-            .tagline { font-size: 24px; }
-            .subtitle { font-size: 16px; }
             .business-opportunity { font-size: 18px; padding: 25px; }
             .card { padding: 30px 20px; }
             .model-steps { flex-direction: column; }
@@ -131,10 +127,8 @@
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1 class="tagline">LIVE YOUR DREAM LIFESTYLE</h1>
-            <p class="subtitle">The Travel Revolution Is Here</p>
-        </div>
+        <!-- Header kept but with titles removed per your edits -->
+        <div class="header"></div>
 
         <div class="business-opportunity">
             Ready To Earn A Full-Time Income Sharing A New Brand Global Opportunity?<br>
@@ -191,16 +185,17 @@
         </div>
     </div>
 
-    <!-- Existing Scripts (unchanged) -->
-    <script>/* (all your admin + form handling JS here unchanged) */</script>
+    <!-- (Any other existing scripts you keep go here) -->
 
-    <!-- Google Sheets Logging (added) -->
+    <!-- Google Sheets Logging (new, final) -->
     <script>
-      const SHEETS_ENDPOINT = "https://script.google.com/macros/s/PASTE-YOUR-URL/exec";
+      // FINAL endpoint in use:
+      const SHEETS_ENDPOINT = "https://script.google.com/macros/s/AKfycbzmJNwXX21hhikOZkdiALocHCAwL7BMMPYbnlpCreCj-vaZ3auqtbE43yCL4oM6FHte/exec";
 
       (function () {
         const form = document.getElementById('ambassadorForm');
         if (!form) return;
+
         form.addEventListener('submit', function () {
           try {
             const payload = {
@@ -211,8 +206,11 @@
               page:      location.href,
               ua:        navigator.userAgent
             };
+
+            // Fire-and-forget so it still runs during redirect
             const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
             const sent = navigator.sendBeacon && navigator.sendBeacon(SHEETS_ENDPOINT, blob);
+
             if (!sent) {
               fetch(SHEETS_ENDPOINT, {
                 method: 'POST',
