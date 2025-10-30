@@ -61,7 +61,7 @@
       background: #f8f9fa;
       border-radius: 12px;
       padding: 18px;
-      margin-bottom: 20px;
+      margin-bottom: 28px; /* + spacing under gray box (was 20px) */
     }
 
     .model-header {
@@ -71,7 +71,7 @@
       gap: 8px;
       margin-bottom: 14px;
       color: #2c5f8d;
-      font-size: 17px;
+      font-size: 18px; /* was 17px for clearer hierarchy */
       font-weight: 700;
       text-align: center;
     }
@@ -106,7 +106,7 @@
     }
     .step-text { font-size: 13px; color: #333; font-weight: 600; }
 
-    /* ===== Benefits Section (updated ✦ design) ===== */
+    /* ===== Benefits Section (✦ design + alignment) ===== */
     .benefits {
       margin-top: 10px;
       margin-bottom: 18px;
@@ -119,8 +119,9 @@
       font-size: 16px;
       color: #333;
       line-height: 1.45;
+      text-indent: -4px;  /* tighten visual alignment with star */
+      padding-left: 4px;  /* counterbalance indent */
     }
-    /* ✦ colored separator */
     .benefit-item::before {
       content: "✦";
       display: inline-block;
@@ -132,7 +133,13 @@
     }
     .check-icon { display: none !important; }
 
-    form { display: flex; flex-direction: column; margin-top: 6px; }
+    form {
+      display: flex;
+      flex-direction: column;
+      margin-top: 16px;                 /* a bit more space before the form */
+      border-top: 1px solid #e8e8e8;    /* soft divider line */
+      padding-top: 16px;                /* breathing room after divider */
+    }
     .form-group { margin-bottom: 12px; }
     input {
       width: 100%; padding: 13px; border: 2px solid #e0e0e0;
@@ -160,7 +167,7 @@
       font-style: italic;
       color: #555;
       font-size: 16px;
-      margin-top: 18px;
+      margin-top: 28px;  /* extra breathing room above quote (was 18px) */
       margin-bottom: 6px;
     }
     .founder-name {
@@ -284,7 +291,6 @@
             body: JSON.stringify(payload)
           })
           .then(() => {
-            console.log('Data sent successfully');
             statusDiv.textContent = '✓ Thank you! Redirecting to signup page...';
             statusDiv.style.color = '#4CAF50';
             form.reset();
