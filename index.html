@@ -81,15 +81,15 @@
       justify-content: space-between;
       align-items: center;
       gap: 8px;
-      flex-wrap: nowrap; /* prevent wrapping */
-      overflow-x: auto; /* ensures all 3 fit horizontally on tiny screens */
+      flex-wrap: nowrap; /* keep 3 across */
+      overflow-x: auto;
     }
-    .model-steps::-webkit-scrollbar { display: none; } /* hide scrollbar for clean look */
+    .model-steps::-webkit-scrollbar { display: none; }
 
     .step {
       flex: 1;
       text-align: center;
-      min-width: 100px; /* smaller so all 3 stay in one row */
+      min-width: 100px;
     }
     .step-number {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -106,29 +106,31 @@
     }
     .step-text { font-size: 13px; color: #333; font-weight: 600; }
 
-    /* Benefits List */
+    /* ===== Benefits Section (updated ✦ design) ===== */
     .benefits {
       margin-top: 10px;
       margin-bottom: 18px;
-      text-align: center; /* centers the text */
+      text-align: center;
+      padding: 0;
     }
     .benefit-item {
-      display: inline-flex; /* makes each line centered */
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 10px;
-      font-size: 15px;
+      display: block;
+      margin: 10px 0;
+      font-size: 16px;
       color: #333;
       line-height: 1.45;
-      width: 100%;
     }
-    .check-icon {
-      color: #2ecc71;
+    /* ✦ colored separator */
+    .benefit-item::before {
+      content: "✦";
+      display: inline-block;
       margin-right: 8px;
-      font-size: 10px; /* smaller checkmark */
-      line-height: 1;
-      flex-shrink: 0;
+      font-weight: 700;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
+    .check-icon { display: none !important; }
 
     form { display: flex; flex-direction: column; margin-top: 6px; }
     .form-group { margin-bottom: 12px; }
@@ -147,7 +149,6 @@
     }
     .cta-button:hover { transform: scale(1.03); box-shadow: 0 10px 30px rgba(102,126,234,0.35); }
     .cta-button:disabled { opacity: 0.6; cursor: not-allowed; }
-    .rocket { display: none !important; }
 
     .status {
       margin-top: 10px; font-size: 14px; text-align: center;
@@ -213,6 +214,7 @@
           </div>
         </div>
 
+        <!-- Benefits List -->
         <div class="benefits">
           <div class="benefit-item"><span class="check-icon">✔</span> Global opportunity with lucrative compensation</div>
           <div class="benefit-item"><span class="check-icon">✔</span> Daily bonuses, monthly residuals & car bonus</div>
@@ -220,6 +222,7 @@
           <div class="benefit-item"><span class="check-icon">✔</span> Once-in-a-lifetime incentive trips</div>
         </div>
 
+        <!-- Lead Capture Form -->
         <form id="ambassadorForm" autocomplete="on" novalidate>
           <div class="form-group">
             <input type="text" id="firstName" name="firstName" placeholder="First Name" required />
@@ -244,6 +247,7 @@
     </div>
   </div>
 
+  <!-- Lead capture script with redirect -->
   <script>
     const SHEETS_ENDPOINT = "https://script.google.com/macros/s/AKfycbzmJNwXX21hhikOZkdiALocHCAwL7BMMPYbnlpCreCj-vaZ3auqtbE43yCL4oM6FHte/exec";
     const SIGNUP_URL = "https://www.MWRlife.com/LorelleNicole";
@@ -280,9 +284,11 @@
             body: JSON.stringify(payload)
           })
           .then(() => {
+            console.log('Data sent successfully');
             statusDiv.textContent = '✓ Thank you! Redirecting to signup page...';
             statusDiv.style.color = '#4CAF50';
             form.reset();
+
             setTimeout(() => {
               window.location.assign(SIGNUP_URL);
             }, 800);
