@@ -14,56 +14,66 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 20px;
+      padding: 16px;
     }
-    .container { max-width: 600px; width: 100%; }
-    .header { text-align: center; margin-bottom: 30px; }
+    .container { max-width: 640px; width: 100%; }
+    .header { text-align: center; margin-bottom: 0; }
+
+    /* Unified frame */
+    .frame {
+      background: #ffffff;
+      color: #000;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+      overflow: hidden;
+    }
 
     .business-opportunity {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: #fff;
-      padding: 30px;
-      border-radius: 16px;
+      padding: 20px;
       text-align: center;
-      margin-bottom: 40px;
       font-weight: 900;
-      font-size: 18px;
-      line-height: 1.5;
-      box-shadow: 0 8px 30px rgba(118, 75, 162, 0.5);
+      font-size: 16px;
+      line-height: 1.4;
+      box-shadow: none;
+      margin: 0;
+      border-radius: 0;
     }
 
     .card {
       background: #ffffff;
       color: #000000;
-      border-radius: 16px;
-      padding: 40px 30px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      padding: 24px 20px;
+      border-radius: 0;
+      box-shadow: none;
     }
+
     .card-description {
       text-align: center;
-      margin-bottom: 30px;
-      font-size: 16px;
-      line-height: 1.6;
+      margin-bottom: 18px;
+      font-size: 15px;
+      line-height: 1.55;
       color: #555;
     }
 
     .simple-model {
       background: #f8f9fa;
       border-radius: 12px;
-      padding: 25px;
-      margin-bottom: 30px;
+      padding: 18px;
+      margin-bottom: 20px;
     }
 
-    /* Horizontal Title */
     .model-header {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 20px;
+      gap: 8px;
+      margin-bottom: 14px;
       color: #2c5f8d;
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 700;
+      text-align: center;
     }
 
     .model-steps {
@@ -71,36 +81,33 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
     }
-    .step { flex: 1; text-align: center; min-width: 150px; }
+    .step { flex: 1; text-align: center; min-width: 140px; }
     .step-number {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
-      width: 40px;
-      height: 40px;
+      width: 34px;
+      height: 34px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 10px;
+      margin: 0 auto 8px;
       font-weight: bold;
-      font-size: 18px;
+      font-size: 16px;
     }
-    .step-text { font-size: 14px; color: #333; font-weight: 600; }
+    .step-text { font-size: 13px; color: #333; font-weight: 600; }
 
     /* Benefits List */
-    .benefits {
-      margin-top: 20px;
-      margin-bottom: 30px;
-    }
+    .benefits { margin-top: 10px; margin-bottom: 18px; }
     .benefit-item {
       display: flex;
       align-items: flex-start;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       font-size: 15px;
       color: #333;
-      line-height: 1.5;
+      line-height: 1.45;
     }
     .check-icon{
       color: #2ecc71;
@@ -110,50 +117,82 @@
       flex-shrink: 0;
     }
 
-    form { display: flex; flex-direction: column; margin-top: 10px; }
-    .form-group { margin-bottom: 15px; }
+    form { display: flex; flex-direction: column; margin-top: 6px; }
+    .form-group { margin-bottom: 12px; }
     input {
-      width: 100%; padding: 15px; border: 2px solid #e0e0e0;
+      width: 100%; padding: 13px; border: 2px solid #e0e0e0;
       border-radius: 8px; font-size: 16px; transition: border-color 0.3s;
     }
     input:focus { outline: none; border-color: #667eea; }
 
     .cta-button {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: #ffffff; padding: 18px 30px; border: none; border-radius: 8px;
-      font-size: 18px; font-weight: 700; cursor: pointer; transition: transform 0.3s;
-      text-align: center; margin-top: 10px; letter-spacing: 1px; text-decoration: none;
+      color: #ffffff; padding: 14px 22px; border: none; border-radius: 8px;
+      font-size: 17px; font-weight: 700; cursor: pointer; transition: transform 0.3s;
+      text-align: center; margin-top: 6px; letter-spacing: .5px; text-decoration: none;
       display: inline-block;
     }
-    .cta-button:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4); }
+    .cta-button:hover { transform: scale(1.03); box-shadow: 0 10px 30px rgba(102,126,234,0.35); }
     .cta-button:disabled { opacity: 0.6; cursor: not-allowed; }
     .rocket { display: none !important; }
 
     .status {
-      margin-top: 12px; font-size: 14px; text-align: center;
-      color: #d4d4d4; min-height: 18px;
+      margin-top: 10px; font-size: 14px; text-align: center;
+      color: #666; min-height: 18px;
     }
 
-    /* Founder Quote Section */
     .founder-quote {
       text-align: center;
       font-style: italic;
       color: #555;
-      font-size: 17px;
-      margin-top: 30px;
-      margin-bottom: 10px;
+      font-size: 16px;
+      margin-top: 18px;
+      margin-bottom: 6px;
     }
     .founder-name {
       text-align: center;
       color: #2c5f8d;
       font-weight: bold;
-      font-size: 15px;
-      margin-bottom: 25px;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    /* === MOBILE COMPACT MODE === */
+    @media (max-width: 480px) {
+      body { padding: 8px; }
+      .container { max-width: 100%; }
+      .frame { border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,.35); }
+      .business-opportunity {
+        padding: 14px;
+        font-size: 14px;
+        line-height: 1.35;
+      }
+      .card { padding: 14px 12px; }
+      .card-description {
+        font-size: 14px;
+        margin-bottom: 12px;
+        line-height: 1.45;
+      }
+      .simple-model { padding: 12px; margin-bottom: 12px; border-radius: 10px; }
+      .model-header { font-size: 16px; margin-bottom: 8px; }
+      .model-steps { gap: 6px; }
+      .step { min-width: 120px; }
+      .step-number { width: 28px; height: 28px; font-size: 14px; margin-bottom: 6px; }
+      .step-text { font-size: 12px; }
+
+      .benefits { margin-top: 6px; margin-bottom: 12px; }
+      .benefit-item { font-size: 14px; margin-bottom: 8px; line-height: 1.4; }
+      .check-icon { font-size: 11px; margin-right: 6px; }
+
+      .form-group { margin-bottom: 10px; }
+      input { padding: 11px; font-size: 15px; }
+      .cta-button { padding: 12px 16px; font-size: 16px; margin-top: 6px; }
+
+      .founder-quote { font-size: 14px; margin-top: 14px; }
+      .founder-name { font-size: 13px; margin-bottom: 8px; }
     }
 
     @media (max-width: 768px) {
-      .business-opportunity { font-size: 18px; padding: 25px; }
-      .card { padding: 30px 20px; }
       .model-steps { flex-direction: column; }
       .model-header { flex-direction: column; }
     }
@@ -163,71 +202,69 @@
   <div class="container">
     <div class="header"></div>
 
-<div class="business-opportunity">
-  Earn A Full-Time Income.<br />
-  Share A Brand That Inspires Freedom & Financial Growth.<br />
-  Build Your Legacy Now!
-</div>
-
-    <div class="card">
-      <p class="card-description">
-        Join the movement that's revolutionizing travel. Just as Netflix changed entertainment and Spotify transformed music, this opportunity is redefining how people experience the world.
-      </p>
-
-      <div class="simple-model">
-        <div class="model-header">
-          <h3>Our Simple Business Model</h3>
-        </div>
-        <div class="model-steps">
-          <div class="step">
-            <div class="step-number">1</div>
-            <div class="step-text">Share The Membership</div>
-          </div>
-          <div class="step">
-            <div class="step-number">2</div>
-            <div class="step-text">Share The Opportunity</div>
-          </div>
-          <div class="step">
-            <div class="step-number">3</div>
-            <div class="step-text">Enjoy The Rewards</div>
-          </div>
-        </div>
+    <div class="frame">
+      <div class="business-opportunity">
+        Earn A Full-Time Income.<br />
+        Share A Brand That Inspires Freedom & Financial Growth.<br />
+        Build Your Legacy Now!
       </div>
 
-      <!-- Benefits List -->
-      <div class="benefits">
-        <div class="benefit-item"><span class="check-icon">✔</span> Global opportunity with lucrative compensation</div>
-        <div class="benefit-item"><span class="check-icon">✔</span> Daily bonuses, monthly residuals & car bonus</div>
-        <div class="benefit-item"><span class="check-icon">✔</span> Presidential & Diamond Club recognition</div>
-        <div class="benefit-item"><span class="check-icon">✔</span> Once-in-a-lifetime incentive trips</div>
+      <div class="card">
+        <p class="card-description">
+          Join the movement that's revolutionizing travel. Just as Netflix changed entertainment and Spotify transformed music, this opportunity is redefining how people experience the world.
+        </p>
+
+        <div class="simple-model">
+          <div class="model-header">
+            <h3>Our Simple Business Model</h3>
+          </div>
+          <div class="model-steps">
+            <div class="step">
+              <div class="step-number">1</div>
+              <div class="step-text">Share The Membership</div>
+            </div>
+            <div class="step">
+              <div class="step-number">2</div>
+              <div class="step-text">Share The Opportunity</div>
+            </div>
+            <div class="step">
+              <div class="step-number">3</div>
+              <div class="step-text">Enjoy The Rewards</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="benefits">
+          <div class="benefit-item"><span class="check-icon">✔</span> Global opportunity with lucrative compensation</div>
+          <div class="benefit-item"><span class="check-icon">✔</span> Daily bonuses, monthly residuals & car bonus</div>
+          <div class="benefit-item"><span class="check-icon">✔</span> Presidential & Diamond Club recognition</div>
+          <div class="benefit-item"><span class="check-icon">✔</span> Once-in-a-lifetime incentive trips</div>
+        </div>
+
+        <form id="ambassadorForm" autocomplete="on" novalidate>
+          <div class="form-group">
+            <input type="text" id="firstName" name="firstName" placeholder="First Name" required />
+          </div>
+          <div class="form-group">
+            <input type="email" id="email" name="email" placeholder="Email Address" required />
+          </div>
+          <div class="form-group">
+            <input type="tel" id="phone" name="phone" placeholder="Phone Number" required />
+          </div>
+
+          <button type="submit" class="cta-button">
+            START YOUR JOURNEY
+          </button>
+
+          <div id="status" class="status" aria-live="polite"></div>
+        </form>
+
+        <p class="founder-quote">“Experiencing life on your terms is the new definition of success.”</p>
+        <p class="founder-name">Yoni Ashurov, Founder and CEO</p>
       </div>
-
-      <!-- Lead Capture Form -->
-      <form id="ambassadorForm" autocomplete="on" novalidate>
-        <div class="form-group">
-          <input type="text" id="firstName" name="firstName" placeholder="First Name" required />
-        </div>
-        <div class="form-group">
-          <input type="email" id="email" name="email" placeholder="Email Address" required />
-        </div>
-        <div class="form-group">
-          <input type="tel" id="phone" name="phone" placeholder="Phone Number" required />
-        </div>
-
-        <button type="submit" class="cta-button">
-          START YOUR JOURNEY
-        </button>
-
-        <div id="status" class="status" aria-live="polite"></div>
-      </form>
-
-      <!-- Founder Quote Section -->
-      <p class="founder-quote">“Experiencing life on your terms is the new definition of success.”</p>
-      <p class="founder-name">Yoni Ashurov, Founder and CEO</p>
     </div>
   </div>
 
-  <!-- Lead capture script with redirect -->
   <script>
     const SHEETS_ENDPOINT = "https://script.google.com/macros/s/AKfycbzmJNwXX21hhikOZkdiALocHCAwL7BMMPYbnlpCreCj-vaZ3auqtbE43yCL4oM6FHte/exec";
     const SIGNUP_URL = "https://www.MWRlife.com/LorelleNicole";
@@ -235,7 +272,6 @@
     (function () {
       const form = document.getElementById('ambassadorForm');
       const statusDiv = document.getElementById('status');
-      
       if (!form) return;
 
       form.addEventListener('submit', function (e) {
@@ -265,14 +301,10 @@
             body: JSON.stringify(payload)
           })
           .then(() => {
-            console.log('Data sent successfully');
             statusDiv.textContent = '✓ Thank you! Redirecting to signup page...';
             statusDiv.style.color = '#4CAF50';
             form.reset();
-
-            setTimeout(() => {
-              window.location.assign(SIGNUP_URL);
-            }, 800);
+            setTimeout(() => { window.location.assign(SIGNUP_URL); }, 800);
           })
           .catch(err => {
             console.error('Error:', err);
