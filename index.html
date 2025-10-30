@@ -49,11 +49,12 @@
       box-shadow: none;
     }
 
+    /* Smaller to fit in two lines consistently */
     .card-description {
       text-align: center;
       margin-bottom: 18px;
-      font-size: 15px;
-      line-height: 1.55;
+      font-size: 14px;       /* was 15px */
+      line-height: 1.4;      /* was 1.55 */
       color: #555;
     }
 
@@ -105,14 +106,14 @@
       display: flex;
       align-items: flex-start;
       margin-bottom: 10px;
-      font-size: 15px;
+      font-size: 15px;       /* keep benefit text the same */
       color: #333;
       line-height: 1.45;
     }
     .check-icon{
       color: #2ecc71;
       margin-right: 8px;
-      font-size: 12px; /* smaller checkmark */
+      font-size: 10px;       /* smaller checkmark on both desktop & mobile */
       line-height: 1;
       flex-shrink: 0;
     }
@@ -168,11 +169,11 @@
         line-height: 1.35;
       }
       .card { padding: 14px 12px; }
-      .card-description {
-        font-size: 14px;
-        margin-bottom: 12px;
-        line-height: 1.45;
-      }
+
+      /* keep same appearance as desktop */
+      .card-description { font-size: 14px; line-height: 1.4; }
+      .check-icon { font-size: 10px; }
+
       .simple-model { padding: 12px; margin-bottom: 12px; border-radius: 10px; }
       .model-header { font-size: 16px; margin-bottom: 8px; }
       .model-steps { gap: 6px; }
@@ -181,8 +182,7 @@
       .step-text { font-size: 12px; }
 
       .benefits { margin-top: 6px; margin-bottom: 12px; }
-      .benefit-item { font-size: 14px; margin-bottom: 8px; line-height: 1.4; }
-      .check-icon { font-size: 11px; margin-right: 6px; }
+      .benefit-item { font-size: 15px; } /* same as desktop */
 
       .form-group { margin-bottom: 10px; }
       input { padding: 11px; font-size: 15px; }
