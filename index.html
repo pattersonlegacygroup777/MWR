@@ -53,6 +53,19 @@
       padding: 25px;
       margin-bottom: 30px;
     }
+
+    /* Horizontal Title */
+    .model-header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      color: #2c5f8d;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
     .model-steps {
       display: flex;
       justify-content: space-between;
@@ -92,7 +105,7 @@
     .check-icon{
       color: #2ecc71;
       margin-right: 8px;
-      font-size: 14px;
+      font-size: 12px; /* smaller checkmark */
       line-height: 1;
       flex-shrink: 0;
     }
@@ -142,6 +155,7 @@
       .business-opportunity { font-size: 18px; padding: 25px; }
       .card { padding: 30px 20px; }
       .model-steps { flex-direction: column; }
+      .model-header { flex-direction: column; }
     }
   </style>
 </head>
@@ -161,9 +175,9 @@
       </p>
 
       <div class="simple-model">
-        <h3 style="text-align:center;margin-bottom:20px;color:#2c5f8d;font-size:18px;">
-          Our Simple Business Model
-        </h3>
+        <div class="model-header">
+          <h3>Our Simple Business Model</h3>
+        </div>
         <div class="model-steps">
           <div class="step">
             <div class="step-number">1</div>
@@ -216,7 +230,7 @@
   <!-- Lead capture script with redirect -->
   <script>
     const SHEETS_ENDPOINT = "https://script.google.com/macros/s/AKfycbzmJNwXX21hhikOZkdiALocHCAwL7BMMPYbnlpCreCj-vaZ3auqtbE43yCL4oM6FHte/exec";
-    const SIGNUP_URL = "https://www.MWRlife.com/LorelleNicole"; // redirect link
+    const SIGNUP_URL = "https://www.MWRlife.com/LorelleNicole";
 
     (function () {
       const form = document.getElementById('ambassadorForm');
